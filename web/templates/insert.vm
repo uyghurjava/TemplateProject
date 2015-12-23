@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:s="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>添加产品</title>
+    <!--<base href="${request.contextPath}/product/">-->
+    <link rel="stylesheet" href="../bootstrap-3.3.6-dist/css/bootstrap.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!--<script src="../jquery-2.1.4/jquery-2.1.4.js"></script>-->
+</head>
+<body>
+<div class="container-fluid">
+
+    <div class="col-md-8 col-lg-offset-2">
+
+        <p class="text-primary bg-primary" style="padding: 15px">Velocity
+            #if ($id > 0)
+                                                                 修改产品
+            #else
+                                                                 添加产品
+            #end
+        </p>
+
+        <form action="insert_post" method="post">
+            <input type="hidden" name="id" value="$!id">
+
+            <div class="form-group">
+                <label class="control-label">名字</label>
+                <input class="form-control input-lg" name="name" value="$!name">
+            </div>
+            <div class="form-group">
+                <label class="control-label">描述</label>
+                <input class="form-control input-lg" name="description" value="$!description">
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">价格</label>
+                <input class="form-control input-lg" name="price" type="number" step="0.01" value="$!price">
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">生产日期</label>
+                <input class="form-control input-lg" name="productionDate" type="date"
+                       value="$!productionDate">
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">类型</label>
+                <select name="type" class="form-control  input-lg">
+                    #set ($items = ['外接设备','内接设备','核心设备'])
+                    #foreach($i in $items)
+                        #if ($i==$type)
+                            <option selected>$!i</option>
+                        #else
+                            <option>$!i</option>
+                        #end
+                    #end
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-block btn-success btn-lg">添加</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

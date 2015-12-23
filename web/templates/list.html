@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>产品列表</title>
+    <!--<base href="${request.contextPath}/product/">-->
+    <link rel="stylesheet" href="../bootstrap-3.3.6-dist/css/bootstrap.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!--<script src="../jquery-2.1.4/jquery-2.1.4.js"></script>-->
+</head>
+<body>
+
+
+<div class="container-fluid">
+    <div class="col-md-8 col-lg-offset-2">
+
+        <p class="text-primary bg-primary" style="padding: 15px">FreeMarker 产品列表</p>
+
+        <table class="table table-responsive table-hover">
+            <thead>
+            <tr>
+                <th>编号</th>
+                <th>名称</th>
+                <th>描述</th>
+                <th>价格</th>
+                <th>类型</th>
+                <th>生产日期</th>
+                <th>记录时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <#list list as i>
+                <tr>
+                    <td>${i.id!}</td>
+                    <td>${i.name!}</td>
+                    <td>${i.description!}</td>
+                    <td>${i.price!?string('0.00')}</td>
+                    <td>${i.type!}</td>
+                    <td>${i.productionDate?string('yyyy-MM')!}</td>
+                    <td>${i.insertTime!}</td>
+                    <td>
+                        <a class="btn btn-success btn-sm" href="ftl_insert?id=${i.id}">修改</a>
+                        <a class="btn btn-danger btn-sm" href="ftl_delete?id=${i.id}">删除</a>
+                    </td>
+                </tr>
+            </#list>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<#list 0..20 as i>
+    <#if i % 2 =0>
+        <h1 style="color: green;">${i}</h1>
+        <#else/>
+        <h1>${i?string("0.0000")}</h1>
+    </#if>
+</#list>
+
+</body>
+</html>
